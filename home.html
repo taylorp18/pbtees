@@ -2,10 +2,30 @@
 <html>
 <link rel="stylesheet" type="text/css" href="pbtees.css">
 <style>
-	img.beets{
-		width: 20%;
-		box-sizing: border-box;
-	}
+	/* I got much of this hero banner code from a w3schools tutorial here:
+https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_hero_image */
+.hero_img{
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("media/beets_fixed.jpg");
+	height: 350px;
+	width: 70%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	margin: auto;
+	box-sizing: border-box;
+}
+
+.hero_txt {
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: #FFD48C;
+	font-size: 25px;
+	font-family: "Avenir Next", Haettenschweiler, "Franklin Gothic Bold", "Arial Black", "sans-serif";
+}
 </style>
 <head>
 <meta charset="UTF-8">
@@ -21,7 +41,7 @@
 		<ul>
 			<li><a href="store.html">store</a></li>
 			<li><a href="about_us.html">who we are</a></li>
-			<li><a href="#">cart</a></li>
+			<li><a href="404_page.html">cart</a></li>
 		</ul>
 	</nav>
 	<section>
@@ -31,7 +51,7 @@
 	<section class="hero_img" id="banner">
 		<article class="hero_txt">
 			<h4>check out our new fall line</h4>
-			<a class="button" href="#">shop now</a>
+			<a class="button" href="store.html">shop now</a>
 	    </article>
 
 	</section>
