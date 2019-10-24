@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="pbtees.css">
+<head>
+	<meta charset="UTF-8">
+	<title> Cart </title>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="cookie.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			initCookies();
+
+			for (var i = 0; i < Merch.length; i++) {
+				if(getCookie(Merch[i].c_name) > 0){
+					$('#cart').append('<div class="cart"><img class="cart" src="' + Merch[i].image +
+				  	'"> <span class="cart"><strong>' + Merch[i].name + '</strong></span><span class="cart">' +
+				  	Merch[i].price + '<span class="cart">' + getCookie(Merch[i].c_name) + '</span></div>')
+				}
+			}
+		})
+	</script>
+</head>
+
+<input type="" onchange="" name="">
+
+<body>
+	<header>
+		<h1><a href="index.html">P.B. Tee's</a></h1>
+		<h2>high quality shirts, low quality branding</h2>
+	</header>
+	<nav>
+		<ul>
+			<li><a href="store.html">store</a></li>
+			<li><a href="about_us.html">who we are</a></li>
+			<li><a href="cart.html">cart</a></li>
+		</ul>
+	</nav>
+	<section id="cart">
+		
+	</section>
+</body>
+</html>
