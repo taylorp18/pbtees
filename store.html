@@ -12,6 +12,9 @@
 		padding-top: 3%;
 	}
 </style>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="cookie.js"></script>
 <head>
 <meta charset="UTF-8">
 <title>store</title>
@@ -26,7 +29,7 @@
 		<ul>
 			<li><a href="store.html">store</a></li>
 			<li><a href="about_us.html">who we are</a></li>
-			<li><a href="404_page.html">cart</a></li>
+			<li><a href="cart.html">cart</a></li>
 		</ul>
 	</nav>
 	
@@ -35,7 +38,7 @@
 		<article class="caption">
 			<p class="item">"beets by schrute" sweatshirt
 							<br>$19.99</p>
-			<a class="button">add to cart</a>
+			<a class="button" onclick="addBeet()">add to cart</a>
 		</article>
 		<br>
 		<img class="store-img" src="media/supermean_sweatshirt.jpg" alt="supermean sweatshirt">

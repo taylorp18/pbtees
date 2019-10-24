@@ -100,3 +100,28 @@ a.button {
 	color: white;
 }
 
+img.cart{
+	width: 200px; 
+}
+
+div.cart{
+	border: solid #000 1px;
+	width: 90%;
+	max-width: 700px;
+	margin: 5px auto;
+	display: flex;
+	justify-content: space-around;
+}
+
+span.cart{
+	font-family: "Andale Mono", Arial;
+	padding: 20px 2%;
+	clear: both;
+	float: right;
+}
+/*
+@media only screen and (max-width: 800px) {
+  div.cart {
+    width: 88%
+  }
+*/
