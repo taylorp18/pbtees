@@ -14,17 +14,30 @@ function initCookies(){
   }
 }
 
-function changeBeets(cname){
-  x = document.beets.value
-  if(!x){
-    setCookie('beets', '0', 10)
+function changeCookie(cname){
+  x = "#" + cname;
+  y = $(x).val();
+  
+  if (y <= 0){
+    setCookie(cname, 0, 10)
     location.reload();
   }
+
+  else{
+    setCookie(cname, y, 10)
+  }
+
+  calculateCost();
 }
 
 function addBeet(){
   var x = parseInt(getCookie('beets'));
   setCookie('beets', ++x, 10);
+}
+
+function addSupermean(){
+  var x = parseInt(getCookie('supermean'));
+  setCookie('supermean', ++x, 10);
 }
 
 function setCookie(cname, cvalue, exdays) {
@@ -56,3 +69,27 @@ function checkCookie(cname) {
     setCookie(cname, "0", 10);
   }
 }
+
+function calculateCost(){
+  var total = 0;
+  for (var i = 0; i < Merch.length; i++) {
+    total +=(Merch[i].price * getCookie(Merch[i].c_name))
+  }
+  
+  total = Math.round(total * 100) / 100;
+
+  total = total.toString();
+  
+  if (total.indexOf('.') == -1) {
+    total += '.00'
+  }
+
+  else if ((total.length - total.indexOf('.')) == 2 )
+    total += '0'
+
+  $('#total').html('<strong>Total:</strong> $' + total);
+
+}
+
+
+

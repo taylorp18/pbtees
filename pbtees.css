@@ -119,9 +119,23 @@ span.cart{
 	clear: both;
 	float: right;
 }
-/*
+
+input {
+	margin: 20px 2%;
+	font-family: "Andale Mono", Arial;
+	font-size: 15px;
+	border: none;
+	width: 40px;
+}
+
+#total{
+	font-family: "Andale Mono", Arial;
+	font-size: 30px;
+	border: none;
+	justify-content: right;
+}
+
 @media only screen and (max-width: 800px) {
   div.cart {
     width: 88%
   }
-*/
