@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" type="text/css" href="pbtees.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <head>
 	<meta charset="UTF-8">
 	<title>beets by schrute - sweatshirt</title>
 </head>
 <style>
-	.product_box {
-		-webkit-box-align: center;
-		border: 3px solid black;
-		width: 50%;
-	}
 	#product_img {
 		display: block;
 		margin-left: auto;
@@ -52,26 +48,23 @@
 	<h3 align="center">Product Details</h3>
 	<p align="center">
 		Show off the brand with one of our most stylish designs while still
+		The perfect Fall/Winter season look. Show off the brand with one of our most stylish designs while still
 		experiencing the high comfort and quality that our sweatshirts are 
 		known for.
 	</p>
-	<article></article>
+	<script>
+		$(document).ready(function(){
+			$("#product_img").mouseenter(function(){
+				$("#product_img").css("height", "75%");
+				$("#product_img").css("width", "75%");
+			});
+			$("#product_img").mouseleave(function(){
+				$("#product_img").css("height", "25%");
+				$("#product_img").css("width", "25%");
+			});
+
+		});
+	</script>
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </html>
