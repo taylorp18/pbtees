@@ -42,11 +42,6 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_hero_image */
 		initCookies();
 	});
 </script>
-<script> 
-$(document).ready(function(){
-	$("hero_img")
-});
-</script>
 
 
 
@@ -77,5 +72,19 @@ $(document).ready(function(){
 	    </article>
 
 	</section>
+	<script>
+			function repeatFade() {
+				$(".hero_txt").fadeToggle(1000);
+				setTimeout(function(){
+					repeatFade();
+				}, 1000);
+			}
+			$(document).ready(function(){
+				$(".hero_txt").hide();
+				$(".hero_txt").slideDown(500);
+				setTimeout(2000);
+				repeatFade();
+			})
+		</script>
 </body>
 </html>
