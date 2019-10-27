@@ -151,15 +151,25 @@ input {
         nav a.icon {
                 display: block;
                 float: right;
+                padding: none;
+                position: absolute;
+                top: 0;
+                right: 0;
         }
         nav {
                 border: none;
-                margin: 1%;
                 position: fixed;
                 right: 0;
                 top: 0;
+                text-align: right;
         }
-        nav.responsive {position: fixed; right: 0; top: 0;}
+        nav ul {
+                margin: none;
+        }
+        nav ul li {
+                display: block;
+        }
+        nav.responsive {position: fixed; right: 0; top: 0; background-color: rgba(0, 0, 0, .5)}
         nav.responsive a.icon {
                 position: absolute;
                 top: 0;
@@ -172,5 +182,6 @@ input {
         nav.responsive a{
                 display: block;
                 text-align: right;
+                color: #FFF;
         }
 }
