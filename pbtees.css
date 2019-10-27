@@ -169,7 +169,7 @@ input {
         nav ul li {
                 display: block;
         }
-        nav.responsive {position: fixed; right: 0; top: 0; background-color: rgba(0, 0, 0, .75)}
+        nav.responsive {position: fixed; right: 0; top: 0; background-color: rgba(0, 0, 0, .5)}
         nav.responsive a.icon {
                 position: absolute;
                 top: 0;
