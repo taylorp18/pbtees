@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="pbtees.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>beets by schrute - sweatshirt</title>
+	<script>
+/*From w3schools tutorial on responsive nav design*/
+function toggle() {
+  var x = document.getElementById("topNav");
+  if (x.className === "") {
+    x.className += "responsive";
+  } else {
+    x.className = "";
+  }
+}
+</script>
+</head>
+<style>
+	#product_img {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		box-sizing: border-box;
+		height: 25%;
+		width: 25%;
+	}
+</style>
+<body>
+	<header>
+		<h1><a href="index.html">P.B. Tee's</a></h1>
+		<h2>high quality shirts, low quality branding</h2>
+	</header>
+	<nav id="topNav">
+		<ul>
+			<li><a href="store.html">store</a></li>
+			<li><a href="about_us.html">who we are</a></li>
+			<li><a href="cart.html">cart</a></li>
+			<li><a href="javascript:void(0);" class="icon" onclick="toggle()">
+				<i class="fa fa-bars"></i></a></li>
+		</ul>
+	</nav>
+
+	
+		<img id="product_img" src="media/beets_sweatshirt.jpg" alt="beets by schrute sweatshirt">
+	<div align="center">
+		<p class="item">"beets by schrute" sweatshirt
+			<br>$19.99
+		</p>
+		<form>
+			<input type="radio" name="size" value="small">Small
+			<input type="radio" name="size" value="medium">Medium
+			<input type="radio" name="size" value="large">Large
+			<input type="radio" name="size" value="x-large">X-Large<br>
+			Quantity: <input type="number" min="1" max="25"><br>
+			<a class="button" onclick="">add to cart</a>
+		</form>
+	</div>
+
+	<hr>
+	<h3 align="center">Product Details</h3>
+	<p align="center">
+		The perfect Fall/Winter season look. Show off the brand with one of our most stylish designs while still
+		experiencing the extreme comfort and high quality that our sweatshirts are 
+		known for.
+	</p>
+	<script>
+		$(document).ready(function(){
+			$("#product_img").mouseenter(function(){
+				$("#product_img").css("height", "75%");
+				$("#product_img").css("width", "75%");
+			});
+			$("#product_img").mouseleave(function(){
+				$("#product_img").css("height", "25%");
+				$("#product_img").css("width", "25%");
+			});
+		});
+	</script>
+</body>
+
+</html>

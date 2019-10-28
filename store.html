@@ -4,7 +4,8 @@
 <link rel="stylesheet" type="text/css" href="store.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="cookie.js"></script>
-
+<!--delete?-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
 	.caption{
@@ -20,6 +21,7 @@
 	
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>store</title>
 	
 <script language="javascript" type="text/javascript">
@@ -68,6 +70,18 @@
 	});
 </script>
 	
+<script>
+/*From w3schools tutorial on responsive nav design*/
+function toggle() {
+  var x = document.getElementById("topNav");
+  if (x.className === "") {
+    x.className += "responsive";
+  } else {
+    x.className = "";
+  }
+}
+</script>
+
 </head>
 
 <body>
@@ -75,11 +89,13 @@
 		<h1><a href="index.html">P.B. Tee's</a></h1>
 		<h2>high quality shirts, low quality branding</h2>
 	</header>
-	<nav>
+	<nav id="topNav">
 		<ul>
 			<li><a href="store.html">store</a></li>
 			<li><a href="about_us.html">who we are</a></li>
-			<li><a href="404_page.html">cart</a></li>
+			<li><a href="cart.html">cart</a></li>
+			<li><a href="javascript:void(0);" class="icon" onclick="toggle()">
+				<i class="fa fa-bars"></i></a></li>
 		</ul>
 	</nav>
 	
@@ -94,7 +110,6 @@
 			</div>
 			<p>$19.99</p>
 		</a>
-<!--		<div class="caption"><p>sweatshirt</p></div>-->
 	<!--	second pic-->
 		<a href="#">
 			<div class="container2">
@@ -105,7 +120,6 @@
 			</div>
 			<p>$19.99</p>
 		</a>
-<!--		<div class="caption"><p>sweatshirt</p></div>-->
 	</div>
 </body>
 </html>

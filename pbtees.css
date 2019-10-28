@@ -2,91 +2,186 @@
 /* CSS Document */
 
 body{
-	background-color: #FFFFFF;
+        background-color: #FFFFFF;
 }
 
 header{
-	text-align: center;
-	font-family: Avenir Next, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", "sans-serif";
+        text-align: center;
+        font-family: Avenir Next, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", "sans-serif";
 }
 
 h1{
-	font-size: 40px;
-	color: #171616;
+        font-size: 40px;
+        color: #171616;
 }
 
 h2{
-	font-size: 16px;
-	text-align: center;
+        font-size: 16px;
+        text-align: center;
 }
 
 h3{
-	font-size: 20px;
-	font-family: "Avenir Next", Haettenschweiler, "Franklin Gothic Bold", "Arial Black", "sans-serif";
-	font-weight: 450;
-	padding: 10px 15%;
-	box-sizing: border-box;
+        font-size: 20px;
+        font-family: "Avenir Next", Haettenschweiler, "Franklin Gothic Bold", "Arial Black", "sans-serif";
+        font-weight: 450;
+        padding: 10px 15%;
+        box-sizing: border-box;
 }
 
 nav{
-	text-align: center;
-	box-sizing: border-box;
-	font-family: "Avenir Next", Haettenschweiler, "Franklin Gothic Bold", "Arial Black", "sans-serif";
-	border-bottom: 1px solid #000000;
-	border-top: 1px solid #000000;
-	margin: 20px 15%;
-	
+        text-align: center;
+        box-sizing: border-box;
+        font-family: "Avenir Next", Haettenschweiler, "Franklin Gothic Bold", "Arial Black", "sans-serif";
+        border-bottom: 1px solid #000000;
+        border-top: 1px solid #000000;
+        margin: 20px 15%;
+        
 }
 
 nav a{
-	color: #000000;
-	font-size: 17px;
-	text-decoration: none;
+        color: #000000;
+        font-size: 17px;
+        text-decoration: none;
 }
 nav ul{
-	list-style-type: none;
-	margin: auto;
-	box-sizing: border-box;
+        list-style-type: none;
+        margin: auto;
+        box-sizing: border-box;
 }
 nav ul li{
-	display: inline-block;
-	padding: 5px 40px;
-	box-sizing: border-box;
+        display: inline-block;
+        padding: 5px 40px;
+        box-sizing: border-box;
 }
 nav ul li a:hover{
-	color: #FFFFFF;
-	background: #000000;
-	box-sizing: border-box;
-	padding: 5px 10px;
+        color: #FFFFFF;
+        background: #000000;
+        box-sizing: border-box;
+        padding: 5px 10px;
+}
+
+nav .icon{
+        display: none;
 }
 
 p{
-	font-family: "Andale Mono", Arial;
-	padding: 20px 15%;
-	box-sizing: border-box;
+        font-family: "Andale Mono", Arial;
+        padding: 20px 15%;
+        box-sizing: border-box;
 }
 
 a{
-	text-decoration: none;
-	color: #000000;
+        text-decoration: none;
+        color: #000000;
+}
+
+.store-img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        box-sizing: border-box;
+        height: 25%;
+        width: 25%;
+        
 }
 
 a.button {
-	border: none;
-	outline: 0;
-	display: inline-block;
-	padding: 10px 20px;
-	box-sizing: border-box;
-	color: #555454;
-	background-color: #CFE9EC;
-	text-align: center;
-	cursor: pointer;
-	font-family: "Avenir Next", "Andale Mono", Arial;
-	font-size: 16px;
+        border: none;
+        outline: 0;
+        display: inline-block;
+        padding: 10px 20px;
+        box-sizing: border-box;
+        color: #555454;
+        background-color: #CFE9EC;
+        text-align: center;
+        cursor: pointer;
+        font-family: "Avenir Next", "Andale Mono", Arial;
+        font-size: 16px;
 }
 
 .button:hover {
-	background-color: #555;
-	color: white;
+        background-color: #555;
+        color: white;
 }
 
+img.cart{
+        width: 200px; 
+}
+
+div.cart{
+        border: solid #000 1px;
+        width: 90%;
+        max-width: 700px;
+        margin: 5px auto;
+        display: flex;
+        justify-content: space-around;
+}
+
+span.cart{
+        font-family: "Andale Mono", Arial;
+        padding: 20px 2%;
+        clear: both;
+        float: right;
+}
+
+input {
+        margin: 20px 2%;
+        font-family: "Andale Mono", Arial;
+        font-size: 15px;
+        border: none;
+        width: 40px;
+}
+
+#total{
+        font-family: "Andale Mono", Arial;
+        font-size: 30px;
+        border: none;
+        justify-content: right;
+}
+
+@media only screen and (max-width: 800px) {
+  div.cart {
+    width: 88%
+  }
+}
+@media only screen and (max-width: 800px) {
+        nav a {
+                display: none;
+        }
+        nav a.icon {
+                display: block;
+                float: right;
+                padding: none;
+                position: absolute;
+                top: 0;
+                right: 0;
+        }
+        nav {
+                border: none;
+                position: fixed;
+                right: 0;
+                top: 0;
+                text-align: right;
+        }
+        nav ul {
+                margin: none;
+        }
+        nav ul li {
+                display: block;
+        }
+        nav.responsive {position: fixed; right: 0; top: 0; background-color: rgba(0, 0, 0, .5)}
+        nav.responsive a.icon {
+                position: absolute;
+                top: 0;
+                right: 0;
+                
+        }
+        nav.responsive ul li{
+                display: block;
+        }
+        nav.responsive a{
+                display: block;
+                text-align: right;
+                color: #FFF;
+        }
+}

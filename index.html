@@ -1,9 +1,11 @@
 <!doctype html>
 <html>
 <link rel="stylesheet" type="text/css" href="pbtees.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 	/* I got much of this hero banner code from a w3schools tutorial here:
 https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_hero_image */
+
 .hero_img{
 	background-image: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("media/beets_fixed.jpg");
 	height: 350px;
@@ -17,6 +19,7 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_hero_image */
 }
 
 .hero_txt {
+
 	text-align: center;
 	position: absolute;
 	top: 50%;
@@ -29,7 +32,34 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_hero_image */
 </style>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Home</title>
+
+<!-- PUT NEW STUFF BELOW -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="cookie.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		initCookies();
+	});
+</script>
+<script>
+/*From w3schools tutorial on responsive nav design*/
+function toggle() {
+  var x = document.getElementById("topNav");
+  if (x.className === "") {
+    x.className += "responsive";
+  } else {
+    x.className = "";
+  }
+}
+</script>
+
+
+
+<!-- PUT NEW STUFF ABOVE -->
+
 </head>
 
 <body>
@@ -37,11 +67,13 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_hero_image */
 		<h1><a href="index.html">P.B. Tee's</a></h1>
 		<h2>high quality shirts, low quality branding</h2>
 	</header>
-	<nav>
+	<nav id="topNav">
 		<ul>
 			<li><a href="store.html">store</a></li>
 			<li><a href="about_us.html">who we are</a></li>
-			<li><a href="404_page.html">cart</a></li>
+			<li><a href="cart.html">cart</a></li>
+			<li><a href="javascript:void(0);" class="icon" onclick="toggle()">
+				<i class="fa fa-bars"></i></a></li>
 		</ul>
 	</nav>
 	<section>
@@ -55,5 +87,19 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_hero_image */
 	    </article>
 
 	</section>
+	<script>
+			function repeatFade() {
+				$(".hero_txt").fadeToggle(1000);
+				setTimeout(function(){
+					repeatFade();
+				}, 1000);
+			}
+			$(document).ready(function(){
+				$(".hero_txt").hide();
+				$(".hero_txt").slideDown(500);
+				setTimeout(2000);
+				repeatFade();
+			})
+		</script>
 </body>
 </html>
