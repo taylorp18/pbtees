@@ -19,3 +19,43 @@
 	#size {
 		font-family: "Avenir Next", Arial;
 	}
+	.size-radio
+	{
+		 -webkit-appearance: none;
+		 -moz-appearance: none;
+		 appearance: none;
+		 display: inline-block;
+		 position: relative;
+		 background-color: #f1f1f1;
+		 color: #000000;
+		 top: 0px;
+		 height: 30px;
+		 width: 30px;
+		 border: 0;
+		 border-radius: 50px;
+		 cursor: pointer;     
+		 margin-right: 50px;
+		 margin-left: 5px;
+		 margin-bottom: 0px;
+		 outline: none;
+	}
+	/*.size-radio:checked::before
+	{
+		 position: absolute;
+		 font: 13px/1 'Avenir Next', Arial;
+		 left: 11px;
+		 top: 7px;
+		 content: '\02143';	
+		 transform: rotate(40deg);
+	}*/
+	.size-radio:hover
+	{
+		 background-color: #f7f7f7;
+	}
+	.size-radio:checked
+	{
+		 /*background-color: #f1f1f1;*/
+		 background-color: #000000;
+	}
+	
+	
