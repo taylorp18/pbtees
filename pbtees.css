@@ -60,6 +60,10 @@ nav ul li a:hover{
 	padding: 5px 10px;
 }
 
+nav.icon{
+	display: none;
+}
+
 p{
 	font-family: "Andale Mono", Arial;
 	padding: 20px 15%;
