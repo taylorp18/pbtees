@@ -14,6 +14,12 @@ function initCookies(){
   }
 }
 
+function resetCookies(){
+  for (var i = 0; i < Merch.length; i++){
+    setCookie(Merch[i].c_name, "0", 10);
+  }
+}
+
 function changeCookie(cname){
   x = "#" + cname;
   y = $(x).val();
@@ -90,6 +96,3 @@ function calculateCost(){
   $('#total').html('<strong>Total:</strong> $' + total);
 
 }
-
-
-
