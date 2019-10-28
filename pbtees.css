@@ -5,6 +5,12 @@ body{
         background-color: #FFFFFF;
 }
 
+footer{
+        font-family: Avenir Next, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", "sans-serif";
+        position: fixed;
+        bottom: 0;
+}
+
 header{
         text-align: center;
         font-family: Avenir Next, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", "sans-serif";
