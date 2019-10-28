@@ -63,10 +63,10 @@
             // Validate form input
             // Also serves to sanitize input
             function validate() {
-                if ($("#total").html() == "<strong>Total:</strong> $0.00") {
+                /*if ($("#total").html() == "<strong>Total:</strong> $0.00") {
                     alert("Cart is empty");
                     return;
-                }
+                }*/
 
                 // Check for all required shipping details
                 if (document.getElementById("firstName").value == "" ||
@@ -82,20 +82,20 @@
                 }
 
                 // Validate name input (also some self-sanitization)
-                let name = new RegExp("^[A-Z][a-z]*$");
+                let name = new RegExp("^([A-Z]|[a-z])*$");
                 if (document.getElementById("firstName").value.match(name) == null) {
-                    alert("Please input a name consisting of only alphabetic characters and beginning with a capital");
+                    alert("Please input a name consisting of only alphabetic characters");
                     $("#firstName").focus();
                     return;
                 }
                 if (document.getElementById("lastName").value.match(name) == null) {
-                    alert("Please input a name consisting of only alphabetic characters and beginning with a capital");
+                    alert("Please input a name consisting of only alphabetic characters");
                     $("#firstName").focus();
                     return;
                 }
 
                 // Validate shipping address
-                let address = new RegExp("^[1-9][0-9]* [A-Z][a-z]* [a-z]*");
+                let address = new RegExp("^[1-9][0-9]* ([A-Z]|[a-z])* ([A-Z]|[a-z])*");
                 if (document.getElementById("address").value.match(address) == null) {
                     alert("Please input a valid address");
                     $("#address").focus();
@@ -116,6 +116,7 @@
                     document.getElementById("cvv").value == "" ||
                     document.getElementById("billingName").value == "") {
                     alert("All fields of payment information are required");
+                    $("#card").focus();
                     return;
                 }
 
@@ -147,7 +148,7 @@
                 }
 
                 // Validate card name
-                let fullName = new RegExp("^[A-Z][a-z]* [A-Z][a-z]*$");
+                let fullName = new RegExp("^([A-Z]|[a-z])* ([A-Z]|[a-z])*$");
                 if (document.getElementById("billingName").value.match(fullName) == null) {
                     alert("Please input a valid first and last name attatched to the card above");
                     $("#billingName").focus();
@@ -169,17 +170,18 @@
                     document.getElementById("billCountry").value == "" ||
                     document.getElementById("billZip").value == "") {
                     alert("All fields of billing address are required");
+                    $("#billFirstName").focus();
                     return;
                 }
 
                 // Validate name input (also some self-sanitization)
                 if (document.getElementById("firstName").value.match(name) == null) {
-                    alert("Please input a name consisting of only alphabetic characters and beginning with a capital");
+                    alert("Please input a name consisting of only alphabetic characters");
                     $("#firstName").focus();
                     return;
                 }
                 if (document.getElementById("lastName").value.match(name) == null) {
-                    alert("Please input a name consisting of only alphabetic characters and beginning with a capital");
+                    alert("Please input a name consisting of only alphabetic characters");
                     $("#firstName").focus();
                     return;
                 }
