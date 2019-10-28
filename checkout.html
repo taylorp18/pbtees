@@ -5,7 +5,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title> Cart </title>
+        <title> checkout </title>
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="cookie.js"></script>
@@ -27,6 +27,7 @@
         </script>
         <script>
             /*From w3schools tutorial on responsive nav design*/
+            // Toggle between showing and hiding nav menu items
             function toggle() {
                 var x = document.getElementById("topNav");
                 if (x.className === "") {
@@ -37,6 +38,8 @@
             }
         </script>
         <script type="text/javascript">
+            // Toggle between showing and hiding additional form elements for whether
+            // Shipping and billing address are the same
             var checked = false;
             function toggleChecked() {
                 if (checked) {
@@ -57,7 +60,11 @@
                 }
             }
 
+            // Validate form input
+            // Also serves to sanitize input
             function validate() {
+                
+                // Check for all required shipping details
                 if (document.getElementById("firstName").value == "" ||
                     document.getElementById("lastName").value == "" ||
                     document.getElementById("address").value == "" ||
@@ -66,20 +73,90 @@
                     document.getElementById("country").value == "" ||
                     document.getElementById("zip").value == "") {
                     alert("All fields of shipping address are required");
+                    $("#firstName").focus();
                     return;
                 }
+
+                // Validate name input (also some self-sanitization)
+                let name = new RegExp("^[A-Z][a-z]*$");
+                if (document.getElementById("firstName").value.match(name) == null) {
+                    alert("Please input a name consisting of only alphabetic characters and beginning with a capital");
+                    $("#firstName").focus();
+                    return;
+                }
+                if (document.getElementById("lastName").value.match(name) == null) {
+                    alert("Please input a name consisting of only alphabetic characters and beginning with a capital");
+                    $("#firstName").focus();
+                    return;
+                }
+
+                // Validate shipping address
+                let address = new RegExp("^[1-9][0-9]* [A-Z][a-z]* [a-z]*");
+                if (document.getElementById("address").value.match(address) == null) {
+                    alert("Please input a valid address");
+                    $("#address").focus();
+                    return;
+                }
+
+                // Validate shipping zip code
+                let zipCode = new RegExp("^[0-9]{5}$");
+                if (document.getElementById("zip").value.match(zipCode) == null) {
+                    alert("Please input a valid zip code");
+                    $("#zip").focus();
+                    return;
+                }
+
+                // Check for all required payment details
                 if (document.getElementById("card").value == "" ||
                     document.getElementById("exp").value == "" ||
-                    document.getElementById("csv").value == "" ||
+                    document.getElementById("cvv").value == "" ||
                     document.getElementById("billingName").value == "") {
                     alert("All fields of payment information are required");
                     return;
                 }
+
+                // Validate card number
+                let CCN = new RegExp("^[0-9]{16}$");
+                if (document.getElementById("card").value.match(CCN) == null) {
+                    alert("Please input a valid credit card number" +
+                        "(16 digits please don't actually give me your credit card info)");
+                    $("#card").focus();
+                    return;
+                }
+
+                // Validate card expiration date
+                let expirationDate = new RegExp("^(0[1-9]|1[0-2])/(0[1-9]|1[0-9]|2[0-9]|3[0-1])$");
+                if (document.getElementById("exp").value.match(expirationDate) == null) {
+                    alert("Please input a valid expiration date" +
+                        " of the form MM/YY");
+                    $("#exp").focus();
+                    return;
+                }
+
+                // Validate card cvv
+                let CVV = new RegExp("^([0-9]{3})|([0-9]{4})$");
+                if (document.getElementById("cvv").value.match(CVV) == null) {
+                    alert("Please input a valid CVV" +
+                        " consisting of 3 or 4 digits");
+                    $("#cvv").focus();
+                    return;
+                }
+
+                // Validate card name
+                let fullName = new RegExp("^[A-Z][a-z]* [A-Z][a-z]*$");
+                if (document.getElementById("billingName").value.match(fullName) == null) {
+                    alert("Please input a valid first and last name attatched to the card above");
+                    $("#billingName").focus();
+                    return;
+                }
+
+                // Check for billing address/shipping address
                 if (document.getElementById("billShipAdrSame").checked) {
-                    confirmOrder();
                     confirmOrder();
                     return;
                 }
+
+                // Check for all required billing address details
                 if (document.getElementById("billFirstName").value == "" ||
                     document.getElementById("billLastName").value == "" ||
                     document.getElementById("billAddress").value == "" ||
@@ -90,10 +167,37 @@
                     alert("All fields of billing address are required");
                     return;
                 }
+
+                // Validate name input (also some self-sanitization)
+                if (document.getElementById("firstName").value.match(name) == null) {
+                    alert("Please input a name consisting of only alphabetic characters and beginning with a capital");
+                    $("#firstName").focus();
+                    return;
+                }
+                if (document.getElementById("lastName").value.match(name) == null) {
+                    alert("Please input a name consisting of only alphabetic characters and beginning with a capital");
+                    $("#firstName").focus();
+                    return;
+                }
+
+                // Validate billing address
+                if (document.getElementById("address").value.match(address) == null) {
+                    alert("Please input a valid address");
+                    $("#address").focus();
+                    return;
+                }
+
+                // Validate billing zip code
+                if (document.getElementById("zip").value.match(zipCode) == null) {
+                    alert("Please input a valid zip code");
+                    $("#zip").focus();
+                    return;
+                }
                 confirmOrder();
                 return;
             }
 
+            // Write order confirmation to bottom of page
             function confirmOrder() {
                 
                 if (document.getElementById("country").value == "000") {
@@ -106,7 +210,8 @@
                     s + codes[document.getElementById("country").value] + "<br>" +
                     document.getElementById("zip").value +
                     "<h3>thanks dude</h3>" +
-                    "<a class=button href='index.html'>go back</a>");
+                    "<a class=button href='index.html' id='button'>go back</a>");
+                $("#button").focus();
             }
         </script>
 
@@ -120,9 +225,9 @@
                 border-top: 1px solid #000000;
 
             }
-            div {
+            p {
                 font-family: Avenir Next, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", "sans-serif";
-                text-align: left;
+                text-align: center;
                 box-sizing: border-box;
                 margin: 20px 10%;
             }
@@ -438,11 +543,11 @@
 <option value="095">Zimbabwe</option>
             </select><br>
 
-            Zip Code<input type="text" id="zip" style="width:20%"><br>
+            Zip Code<input type="text" id="zip" style="width:20%" maxlength="5"><br>
         <h4>Billing Information</h4>
         Card Number<input type="text" id="card"><br>
         Expiration Date<input type="text" id="exp"><br>
-        CSV<input type="text" id="csv"><br>
+        CVV<input type="text" id="cvv"><br>
         Name on Card<input type="text" id="billingName"><br>
         <input type="radio" id="billShipAdrSame" value="yes" onclick="toggleChecked()" style="width:1%">
             billing and shipping address are the same<br>
@@ -735,10 +840,10 @@
 <option value="084">Zambia</option>
 <option value="095">Zimbabwe</option>
             </select><br>
-            Zip Code<input type="text" id="billZip">
+            Zip Code<input type="text" id="billZip" style="width:20%" maxlength="5">
         </div>
         <input type="submit" id="confirm" value="Place Order">
     </form>
-        <div id="confirmation"></div>
+        <p id="confirmation"></p>
     </body>
 </html>
