@@ -15,6 +15,13 @@
 		height: 25%;
 		width: 25%;
 	}
+
+	#quant_box {
+		border: 1px solid black;
+	}
+	#size {
+		font-family: "Avenir Next", Arial;
+	}
 </style>
 <body>
 	<header>
@@ -35,12 +42,16 @@
 		<p class="item">"beets by schrute" sweatshirt
 			<br>$19.99
 		</p>
-		<form>
-			<input type="radio" name="size" value="small">Small
-			<input type="radio" name="size" value="medium">Medium
-			<input type="radio" name="size" value="large">Large
-			<input type="radio" name="size" value="x-large">X-Large<br>
-			Quantity: <input type="number" min="1" max="25"><br>
+		<form id="size">
+			<label for="size-s">Small</label>
+			<input type="radio" name="size" value="small">
+			<label for="size-m">Medium</label>
+			<input type="radio" name="size" value="medium">
+			<label for="size-l">Large</label>
+			<input type="radio" name="size" value="large">
+			<br><label>Quantity:
+				<input type="number" min="1" max="25" id="quant_box"><br>
+			</label>
 			<a class="button" onclick="">add to cart</a>
 		</form>
 	</div>
@@ -55,8 +66,8 @@
 	<script>
 		$(document).ready(function(){
 			$("#product_img").mouseenter(function(){
-				$("#product_img").css("height", "75%");
-				$("#product_img").css("width", "75%");
+				$("#product_img").css("height", "50%");
+				$("#product_img").css("width", "50%");
 			});
 			$("#product_img").mouseleave(function(){
 				$("#product_img").css("height", "25%");
