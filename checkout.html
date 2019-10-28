@@ -15,7 +15,7 @@
                         initCookies();
 
                         for (var i = 0; i < Merch.length; i++) {
-                                if(getCookie(Merch[i].c_name) != "0"){
+                                if(getCookie(Merch[i].c_name) > 0){
                                         $('#cart').html('<div class="cart"><img class="cart" src="' + Merch[i].image +
                                         '"> <span class="cart"><strong>' + Merch[i].name + '</strong></span><span class="cart">$' +
                                         Merch[i].price + '</span><form><input type="number" id="' + Merch[i].c_name + '" onchange="changeCookie(\'' + Merch[i].c_name + '\')" value= "' + getCookie(Merch[i].c_name) + '"></form></div>')
@@ -23,6 +23,7 @@
                         }
 
                         calculateCost();
+                        //if ()
                 })
         </script>
         <script>
@@ -63,7 +64,11 @@
             // Validate form input
             // Also serves to sanitize input
             function validate() {
-                
+                if ($("#total").html() == "<strong>Total:</strong> $0.00") {
+                    alert("Cart is empty");
+                    return;
+                }
+
                 // Check for all required shipping details
                 if (document.getElementById("firstName").value == "" ||
                     document.getElementById("lastName").value == "" ||
