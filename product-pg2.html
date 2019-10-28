@@ -4,6 +4,7 @@
 <link rel="stylesheet" type="text/css" href="product-pgs.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="cookie.js"></script>
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -52,7 +53,7 @@ function toggle() {
 			<br><label>Quantity:
 				<input type="number" min="1" max="25" id="quant_box"><br>
 			</label>
-			<a class="button" onclick="">add to cart</a>
+			<a class="button" onclick="addToCart('quant_box', 'supermean')">add to cart</a>
 		</form>
 	</div>
 

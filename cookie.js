@@ -36,6 +36,16 @@ function changeCookie(cname){
   calculateCost();
 }
 
+function addToCart(id, cname){
+  x = "#" + id;
+  y = parseInt($(x).val());
+  
+  if (y > 0){
+    y += parseInt(getCookie(cname))
+    setCookie(cname, y, 10)
+  }
+}
+
 function addBeet(){
   var x = parseInt(getCookie('beets'));
   setCookie('beets', ++x, 10);
