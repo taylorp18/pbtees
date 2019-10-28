@@ -52,7 +52,7 @@ function toggle() {
 			<br><label>Quantity:
 				<input type="number" min="1" max="25" id="quant_box"><br>
 			</label>
-			<a class="button" onclick="">add to cart</a>
+			<a class="button" onclick="CartAdded()"><c id="buttontxt">add to cart</c></a>
 		</form>
 	</div>
 
@@ -75,6 +75,12 @@ function toggle() {
 				$("#product_img").css("width", "25%");
 			});
 		});
+	</script>
+	<script>
+		function CartAdded() {
+			$("#buttontxt").text("Added");
+			$("input[id=buttontxt]").attr('disabled',true);
+		}
 	</script>
 </body>
 

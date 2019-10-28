@@ -45,15 +45,15 @@
 		</p>
 		<form id="size">
 			<label for="size-s">S</label>
-			<input type="radio" name="size" value="small" class="size-radio">
+			<input type="radio" name="size" value="small" class="size-radio" id="sm">
 			<label for="size-m">M</label>
-			<input type="radio" name="size" value="medium" class="size-radio">
+			<input type="radio" name="size" value="medium" class="size-radio" id="md">
 			<label for="size-l">L</label>
-			<input type="radio" name="size" value="large" class="size-radio">
+			<input type="radio" name="size" value="large" class="size-radio" id="lg">
 			<br><label>Quantity:
 				<input type="number" min="1" max="25" id="quant_box"><br>
 			</label>
-			<a class="button" onclick="">add to cart</a>
+			<a class="button" onclick="CartAdded()"><c id="buttontxt">add to cart</c></a>
 		</form>
 	</div>
 
@@ -78,8 +78,12 @@
 			});
 		});
 	</script>
+	
 	<script>
-
+	function CartAdded() {
+			$("#buttontxt").text("Added");
+			$("input[id=buttontxt]").attr('disabled',true);
+		}
 	</script>
 </body>
 
