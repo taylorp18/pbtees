@@ -1,6 +1,11 @@
 <!doctype html>
 <html>
 <link rel="stylesheet" type="text/css" href="pbtees.css">
+<link rel="stylesheet" type="text/css" href="store.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="cookie.js"></script>
+<!--delete?-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
 	.caption{
@@ -10,14 +15,73 @@
 	.store-padding{
 		box-sizing: border-box;
 		padding-top: 3%;
+		
 	}
 </style>
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="cookie.js"></script>
+	
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>store</title>
+	
+<script language="javascript" type="text/javascript">
+	$(document).ready(function(){
+		var store_list = new Array("media/img1.jpg", "media/img2.jpg");
+		for(i = 0; i < store_list.length; i++){
+			currContainer = ".container" + (i + 1);
+			$(currContainer).append('<img class="merch" id="' + (i + 1) + '" src=' + store_list[i] +
+									' alt=' + store_list[i] + '>');
+			//format CSS to overlay the text
+			addCSS(".container" + (i + 1));
+			//hide the product info for the current image
+			currProduct = ".product-info" + (i + 1);
+			$(currProduct).hide();
+		}
+	
+	    //on hover effects
+		$(".container1").hover(function(){
+			$(".product-info1").fadeIn("fast");
+			$(".product-info1").css({
+				"background-color": "rgba(0,0,0,1)",
+				"opacity": "1.0"
+			});
+			
+		}, function(){
+			$(".product-info1").fadeOut("fast");
+		});
+		$(".container2").hover(function(){
+			$(".product-info2").fadeIn("fast");
+			$(".product-info2").css({
+				"background-color": "rgba(0,0,0,1)",
+//				"opacity": "1.0"
+			});
+		}, function(){
+			$(".product-info2").fadeOut("fast");	
+		});
+
+		function addCSS(tag){
+			$(tag).css({
+				"position": "relative",
+				"text-align": "center",
+				"color": "white",
+			});
+		}
+	
+	});
+</script>
+	
+<script>
+/*From w3schools tutorial on responsive nav design*/
+function toggle() {
+  var x = document.getElementById("topNav");
+  if (x.className === "") {
+    x.className += "responsive";
+  } else {
+    x.className = "";
+  }
+}
+</script>
+
 </head>
 
 <body>
@@ -25,29 +89,37 @@
 		<h1><a href="index.html">P.B. Tee's</a></h1>
 		<h2>high quality shirts, low quality branding</h2>
 	</header>
-	<nav>
+	<nav id="topNav">
 		<ul>
 			<li><a href="store.html">store</a></li>
 			<li><a href="about_us.html">who we are</a></li>
 			<li><a href="cart.html">cart</a></li>
+			<li><a href="javascript:void(0);" class="icon" onclick="toggle()">
+				<i class="fa fa-bars"></i></a></li>
 		</ul>
 	</nav>
 	
-	<section class="store-padding">
-		<img class="store-img" src="media/beets_sweatshirt.jpg" alt="beets by schrute sweatshirt">
-		<article class="caption">
-			<p class="item">"beets by schrute" sweatshirt
-							<br>$19.99</p>
-			<a class="button" onclick="addBeet()">add to cart</a>
-		</article>
-		<br>
-		<img class="store-img" src="media/supermean_sweatshirt.jpg" alt="supermean sweatshirt">
-		<article class="caption">
-			<p class="item">"supermean" sweatshirt
-					    <br>$19.99</p>
-			<a class="button" onclick="addSupermean()">add to cart</a>
-		</article>
-	</section>
-	
+	<div class="container">
+	<!--	first pic-->
+		<a href="product-pg1.html">
+			<div class="container1">
+				<div class="product-info1">
+					<h4>Beets by Schrute</h4>
+					<h5>(more info)</h5>
+				</div>
+			</div>
+			<p>$19.99</p>
+		</a>
+	<!--	second pic-->
+		<a href="#">
+			<div class="container2">
+				<div class="product-info2">
+					<h4>Super mean</h4>
+					<h5>(more info)</h5>
+				</div>
+			</div>
+			<p>$19.99</p>
+		</a>
+	</div>
 </body>
 </html>

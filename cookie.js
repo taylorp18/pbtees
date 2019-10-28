@@ -1,5 +1,5 @@
-Merch = [new Item('"beets by schrute" sweatshirt', '19.99', 'media/beets_sweatshirt.jpg', 'beets'),
-         new Item('"supermean" sweatshirt', '19.99', 'media/supermean_sweatshirt.jpg', 'supermean')]
+Merch = [new Item('"beets by schrute" sweatshirt', '19.99', 'media/img1.jpg', 'beets'),
+         new Item('"supermean" sweatshirt', '19.99', 'media/img2.jpg', 'supermean')]
 
 function Item(name, price, image, c_name){
   this.name = name;

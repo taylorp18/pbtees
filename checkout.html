@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" type="text/css" href="pbtees.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> Cart </title>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="cookie.js"></script>
+        <script src="countryCode.js"></script>
+        <script type="text/javascript">
+                $(document).ready(function(){
+                        initCookies();
+
+                        for (var i = 0; i < Merch.length; i++) {
+                                if(getCookie(Merch[i].c_name) > 0){
+                                        $('#cart').append('<div class="cart"><img class="cart" src="' + Merch[i].image +
+                                        '"> <span class="cart"><strong>' + Merch[i].name + '</strong></span><span class="cart">$' +
+                                        Merch[i].price + '</span><form><input type="number" id="' + Merch[i].c_name + '" onchange="changeCookie(\'' + Merch[i].c_name + '\')" value= "' + getCookie(Merch[i].c_name) + '"></form></div>')
+                                }
+                        }
+
+                        calculateCost();
+                })
+        </script>
+        <script>
+            /*From w3schools tutorial on responsive nav design*/
+            function toggle() {
+                var x = document.getElementById("topNav");
+                if (x.className === "") {
+                    x.className += "responsive";
+                } else {
+                    x.className = "";
+                }
+            }
+        </script>
+        <script type="text/javascript">
+            var checked = false;
+            function toggleChecked() {
+                if (checked) {
+                    document.getElementById("billShipAdrSame").checked = false;
+                    checked = false;
+                    $(".billingAddr").css("display", "block");
+                    $("#billFirstName").focus();
+                } else {
+                    checked = true;
+                    $(".billingAddr").css("display", "none");
+                    document.getElementById("billFirstName").value = "";
+                    document.getElementById("billLastName").value = "";
+                    document.getElementById("billAddress").value = "";
+                    document.getElementById("billState").value = "";
+                    document.getElementById("billCountry").value = "";
+                    document.getElementById("billZip").value = "";
+                    
+                }
+            }
+
+            function validate() {
+                if (document.getElementById("firstName").value == "" ||
+                    document.getElementById("lastName").value == "" ||
+                    document.getElementById("address").value == "" ||
+                    (document.getElementById("state").value == "" &&
+                        document.getElementById("country").value =="000") ||
+                    document.getElementById("country").value == "" ||
+                    document.getElementById("zip").value == "") {
+                    alert("All fields of shipping address are required");
+                    return;
+                }
+                if (document.getElementById("card").value == "" ||
+                    document.getElementById("exp").value == "" ||
+                    document.getElementById("csv").value == "" ||
+                    document.getElementById("billingName").value == "") {
+                    alert("All fields of payment information are required");
+                    return;
+                }
+                if (document.getElementById("billShipAdrSame").checked) {
+                    confirmOrder();
+                    confirmOrder();
+                    return;
+                }
+                if (document.getElementById("billFirstName").value == "" ||
+                    document.getElementById("billLastName").value == "" ||
+                    document.getElementById("billAddress").value == "" ||
+                    (document.getElementById("billState").value == "" &&
+                        document.getElementById("billCountry").value =="000") ||
+                    document.getElementById("billCountry").value == "" ||
+                    document.getElementById("billZip").value == "") {
+                    alert("All fields of billing address are required");
+                    return;
+                }
+                confirmOrder();
+                return;
+            }
+
+            function confirmOrder() {
+                
+                if (document.getElementById("country").value == "000") {
+                    s = document.getElementById("state").value + ", ";
+                } else s = "";
+                $("#confirmation").html("your order is on its way to:<br>" +
+                    document.getElementById("firstName").value + " " +
+                    document.getElementById("lastName").value + "<br>" +
+                    document.getElementById("address").value + "<br>" +
+                    s + codes[document.getElementById("country").value] + "<br>" +
+                    document.getElementById("zip").value +
+                    "<h3>thanks dude</h3>" +
+                    "<a class=button href='index.html'>go back</a>");
+            }
+        </script>
+
+        <style type="text/css">
+            form {
+                font-family: Avenir Next, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", "sans-serif";
+                text-align: left;
+                box-sizing: border-box;
+                margin: 20px 10%;
+                border-bottom: 1px solid #000000;
+                border-top: 1px solid #000000;
+
+            }
+            div {
+                font-family: Avenir Next, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", "sans-serif";
+                text-align: left;
+                box-sizing: border-box;
+                margin: 20px 10%;
+            }
+            form input[type=text]{border: 1px solid #000000; width:50%;}
+            form input[type=submit]{border: 1px solid #000000; width:50%;}
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <h1><a href="index.html">P.B. Tee's</a></h1>
+            <h2>high quality shirts, low quality branding</h2>
+        </header>
+        <nav id="topNav">
+            <ul>
+                <li><a href="store.html">store</a></li>
+                <li><a href="about_us.html">who we are</a></li>
+                <li><a href="cart.html">cart</a></li>
+                <li><a href="javascript:void(0);" class="icon" onclick="toggle()">
+                    <i class="fa fa-bars"></i></a></li>
+                </ul>
+        </nav>
+
+        <div class="cart" id="total"></div>
+        <form id="payMe" onsubmit="validate(); return false;">
+            <h4>Shipping Information</h4>
+            First Name<input type="text" id="firstName"><br>
+            Last Name<input type="text" id="lastName"><br>
+            Address<input type="text" id="address"><br>
+            State<br>
+            <select id="state">
+                <option value=''>Select One</option>
+                <option value='AL'>Alabama</option>
+                <option value='AK'>Alaska</option>
+                <option value='AZ'>Arizona</option>
+                <option value='AR'>Arkansas</option>
+                <option value='CA'>California</option>
+                <option value='CO'>Colorado</option>
+                <option value='CT'>Connecticut</option>
+                <option value='DE'>Delaware</option>
+                <option value='DC'>District of Columbia</option>
+                <option value='FL'>Florida</option>
+                <option value='GA'>Georgia</option>
+                <option value='HI'>Hawaii</option>
+                <option value='ID'>Idaho</option>
+                <option value='IL'>Illinois</option>
+                <option value='IN'>Indiana</option>
+                <option value='IA'>Iowa</option>
+                <option value='KS'>Kansas</option>
+                <option value='KY'>Kentucky</option>
+                <option value='LA'>Louisiana</option>
+                <option value='ME'>Maine</option>
+                <option value='MD'>Maryland</option>
+                <option value='MA'>Massachusetts</option>
+                <option value='MI'>Michigan</option>
+                <option value='MN'>Minnesota</option>
+                <option value='MS'>Mississippi</option>
+                <option value='MO'>Missouri</option>
+                <option value='MT'>Montana</option>
+                <option value='NE'>Nebraska</option>
+                <option value='NV'>Nevada</option>
+                <option value='NH'>New Hampshire</option>
+                <option value='NJ'>New Jersey</option>
+                <option value='NM'>New Mexico</option>
+                <option value='NY'>New York</option>
+                <option value='NC'>North Carolina</option>
+                <option value='ND'>North Dakota</option>
+                <option value='OH'>Ohio</option>
+                <option value='OK'>Oklahoma</option>
+                <option value='OR'>Oregon</option>
+                <option value='PA'>Pennsylvania</option>
+                <option value='RI'>Rhode Island</option>
+                <option value='SC'>South Carolina</option>
+                <option value='SD'>South Dakota</option>
+                <option value='TN'>Tennessee</option>
+                <option value='TX'>Texas</option>
+                <option value='UT'>Utah</option>
+                <option value='VT'>Vermont</option>
+                <option value='VA'>Virginia</option>
+                <option value='WA'>Washington</option>
+                <option value='WV'>West Virginia</option>
+                <option value='WI'>Wisconsin</option>
+                <option value='WY'>Wyoming</option>
+            </select><br>
+            Country<br>
+            <select id="country">
+                <option value=''>Select One</option>
+                <option value="100">Afghanistan</option>
+<option value="101">Albania</option>
+<option value="080">Algeria</option>
+<option value="102">Andorra</option>
+<option value="103">Angola</option>
+<option value="199">Anguilla</option>
+<option value="192">Antigua and Barbuda (includes Redonda)</option>
+<option value="026">Argentina</option>
+<option value="200">Armenia</option>
+<option value="201">Aruba</option>
+<option value="104">Ascension</option>
+<option value="007">Australia</option>
+<option value="036">Austria</option>
+<option value="202">Azerbaijan</option>
+<option value="105">Azores</option>
+<option value="045">Bahamas</option>
+<option value="071">Bahrain</option>
+<option value="089">Bangladesh</option>
+<option value="058">Barbados</option>
+<option value="203">Belarus</option>
+<option value="013">Belgium</option>
+<option value="106">Belize</option>
+<option value="107">Benin</option>
+<option value="022">Bermuda</option>
+<option value="108">Bhutan</option>
+<option value="056">Bolivia</option>
+<option value="053">Bosnia-Herzegovina</option>
+<option value="109">Botswana</option>
+<option value="008">Brazil</option>
+<option value="204">British Virgin Islands</option>
+<option value="110">Brunei Darussalam</option>
+<option value="111">Bulgaria</option>
+<option value="184">Burkina Faso</option>
+<option value="112">Burma</option>
+<option value="113">Burundi</option>
+<option value="138">Cambodia (Kampuchea)</option>
+<option value="114">Cameroon</option>
+<option value="006">Canada</option>
+<option value="115">Cape Verde</option>
+<option value="116">Cayman Islands</option>
+<option value="117">Central African Republic</option>
+<option value="118">Chad</option>
+<option value="038">Chile</option>
+<option value="091">China</option>
+<option value="017">Colombia</option>
+<option value="119">Comoros</option>
+<option value="081">Congo, Democratic Republic of The</option>
+<option value="120">Congo, Republic of The (Brazzaville)</option>
+<option value="121">Corsica</option>
+<option value="049">Costa Rica</option>
+<option value="137">Cote d'Ivoire  (Ivory Coast)</option>
+<option value="205">Croatia</option>
+<option value="073">Cuba</option>
+<option value="092">Cyprus</option>
+<option value="066">Czech Republic</option>
+<option value="032">Denmark</option>
+<option value="122">Djibouti</option>
+<option value="090">Dominica</option>
+<option value="042">Dominican Republic</option>
+<option value="034">Ecuador</option>
+<option value="062">Egypt</option>
+<option value="044">El Salvador</option>
+<option value="124">Equatorial Guinea</option>
+<option value="131">Eritrea</option>
+<option value="125">Estonia</option>
+<option value="086">Ethiopia</option>
+<option value="127">Falkland Islands</option>
+<option value="126">Faroe Islands</option>
+<option value="094">Fiji</option>
+<option value="052">Finland</option>
+<option value="004">France (includes Monaco)</option>
+<option value="128">French Guiana</option>
+<option value="096">French Polynesia (Tahiti)</option>
+<option value="129">Gabon</option>
+<option value="130">Gambia</option>
+<option value="206">Georgia, Republic of</option>
+<option value="002">Germany</option>
+<option value="069">Ghana</option>
+<option value="132">Gibraltar</option>
+<option value="001">Great Britain and Northern Ireland</option>
+<option value="025">Greece</option>
+<option value="134">Greenland</option>
+<option value="193">Grenada</option>
+<option value="135">Guadeloupe (includes Saint Martin)</option>
+<option value="040">Guatemala</option>
+<option value="093">Guinea</option>
+<option value="136">Guinea-Bissau</option>
+<option value="061">Guyana</option>
+<option value="064">Haiti</option>
+<option value="050">Honduras</option>
+<option value="018">Hong Kong (includes Kowloon)</option>
+<option value="063">Hungary</option>
+<option value="077">Iceland</option>
+<option value="020">India</option>
+<option value="051">Indonesia</option>
+<option value="024">Iran</option>
+<option value="079">Iraq</option>
+<option value="033">Ireland (Eire)</option>
+<option value="023">Israel</option>
+<option value="009">Italy</option>
+<option value="137">Ivory Coast</option>
+<option value="029">Jamaica</option>
+<option value="003">Japan</option>
+<option value="075">Jordan</option>
+<option value="138">Kampuchea (Cambodia)</option>
+<option value="207">Kazakhstan</option>
+<option value="065">Kenya</option>
+<option value="133">Kiribati</option>
+<option value="194">Korea, Democratic People's Republic of (N. Korea)</option>
+<option value="031">Korea, Republic of (S. Korea)</option>
+<option value="060">Kuwait</option>
+<option value="206">Kyrgyzstan</option>
+<option value="139">Laos</option>
+<option value="140">Latvia</option>
+<option value="141">Lebanon</option>
+<option value="142">Lesotho</option>
+<option value="070">Liberia</option>
+<option value="076">Libya</option>
+<option value="189">Liechtenstein</option>
+<option value="143">Lithuania</option>
+<option value="088">Luxembourg</option>
+<option value="144">Macao</option>
+<option value="209">Macedonia, Republic of</option>
+<option value="145">Madagascar</option>
+<option value="146">Madeira Islands</option>
+<option value="147">Malawi</option>
+<option value="055">Malaysia</option>
+<option value="148">Maldives</option>
+<option value="149">Mali</option>
+<option value="097">Malta</option>
+<option value="229">Marshall Islands, Republic of</option>
+<option value="099">Martinique</option>
+<option value="151">Mauritania</option>
+<option value="150">Mauritius</option>
+<option value="005">Mexico</option>
+<option value="243">Micronesia, Federated States of</option>
+<option value="210">Moldova</option>
+<option value="152">Mongolia</option>
+<option value="212">Montenegro (Serbia-Montenegro)</option>
+<option value="191">Montserrat</option>
+<option value="083">Morocco</option>
+<option value="153">Mozambique</option>
+<option value="082">Namibia</option>
+<option value="154">Nauru</option>
+<option value="155">Nepal</option>
+<option value="011">Netherlands</option>
+<option value="156">Netherlands Antilles</option>
+<option value="157">New Caledonia</option>
+<option value="030">New Zealand</option>
+<option value="057">Nicaragua</option>
+<option value="159">Niger</option>
+<option value="048">Nigeria</option>
+<option value="027">Norway</option>
+<option value="160">Oman</option>
+<option value="059">Pakistan</option>
+<option value="041">Panama</option>
+<option value="161">Papua New Guinea</option>
+<option value="076">Paraguay</option>
+<option value="039">Peru</option>
+<option value="012">Philippines</option>
+<option value="190">Pitcaim Islands</option>
+<option value="028">Poland</option>
+<option value="054">Portugal</option>
+<option value="162">Qatar</option>
+<option value="163">Reunion</option>
+<option value="072">Romania</option>
+<option value="037">Russia (Russian Federation)</option>
+<option value="164">Rwanda</option>
+<option value="198">St. Christopher (St. Kitts) and Nevis</option>
+<option value="165">St. Helena</option>
+<option value="197">St. Lucia</option>
+<option value="167">St. Pierre and Miquelon</option>
+<option value="196">St. Vincent and the Grenadines</option>
+<option value="219">San Marino</option>
+<option value="172">Santa Cruz Islands</option>
+<option value="166">Sao Tome and Principe</option>
+<option value="046">Saudi Arabia</option>
+<option value="169">Senegal</option>
+<option value="212">Serbia-Montenegro (Yugoslavia)</option>
+<option value="170">Seychelles</option>
+<option value="171">Sierra Leone</option>
+<option value="035">Singapore</option>
+<option value="213">Slovak Republic (Slovakia)</option>
+<option value="214">Slovenia</option>
+<option value="172">Solomon Islands (includes Santa Cruz Islands)</option>
+<option value="173">Somalia</option>
+<option value="019">South Africa</option>
+<option value="016">Spain</option>
+<option value="087">Sri Lanka</option>
+<option value="174">Sudan</option>
+<option value="074">Suriname</option>
+<option value="175">Swaziland</option>
+<option value="015">Sweden</option>
+<option value="010">Switzerland</option>
+<option value="085">Syrian Arab Republic</option>
+<option value="096">Tahiti</option>
+<option value="021">Taiwan</option>
+<option value="215">Tajikistan</option>
+<option value="098">Tanzania</option>
+<option value="047">Thailand</option>
+<option value="176">Togo</option>
+<option value="177">Tonga</option>
+<option value="043">Trinidad and Tobago</option>
+<option value="178">Tristan da Cunha</option>
+<option value="179">Tunisia</option>
+<option value="180">Turkey</option>
+<option value="216">Turkmenistan</option>
+<option value="181">Turks and Caicos Islands</option>
+<option value="182">Tuvalu</option>
+<option value="183">Uganda</option>
+<option value="217">Ukraine</option>
+<option value="067">United Arab Emirates</option>
+<option value="001">United Kingdom (includes England, Scotland, Wales, and N. Ireland)</option>
+<option value="000">United States</option>
+<option value="068">Uruguay</option>
+<option value="218">Uzbekistan</option>
+<option value="158">Vanuatu</option>
+<option value="185">Vatican City</option>
+<option value="014">Venezuela</option>
+<option value="186">Vietnam</option>
+<option value="204">Virgin Islands</option>
+<option value="195">Wallis and Futuna Islands</option>
+<option value="187">Western Samoa</option>
+<option value="188">Yemen</option>
+<option value="084">Zambia</option>
+<option value="095">Zimbabwe</option>
+            </select><br>
+
+            Zip Code<input type="text" id="zip" style="width:20%"><br>
+        <h4>Billing Information</h4>
+        Card Number<input type="text" id="card"><br>
+        Expiration Date<input type="text" id="exp"><br>
+        CSV<input type="text" id="csv"><br>
+        Name on Card<input type="text" id="billingName"><br>
+        <input type="radio" id="billShipAdrSame" value="yes" onclick="toggleChecked()" style="width:1%">
+            billing and shipping address are the same<br>
+
+        <div class="billingAddr">
+            First Name<input type="text" id="billFirstName"><br>
+            Last Name<input type="text" id="billLastName"><br>
+            Address<input type="text" id="billAddress"><br>
+            State<br>
+            <select id="billState">
+                <option value='AL'>Alabama</option>
+                <option value='AK'>Alaska</option>
+                <option value='AZ'>Arizona</option>
+                <option value='AR'>Arkansas</option>
+                <option value='CA'>California</option>
+                <option value='CO'>Colorado</option>
+                <option value='CT'>Connecticut</option>
+                <option value='DE'>Delaware</option>
+                <option value='DC'>District of Columbia</option>
+                <option value='FL'>Florida</option>
+                <option value='GA'>Georgia</option>
+                <option value='HI'>Hawaii</option>
+                <option value='ID'>Idaho</option>
+                <option value='IL'>Illinois</option>
+                <option value='IN'>Indiana</option>
+                <option value='IA'>Iowa</option>
+                <option value='KS'>Kansas</option>
+                <option value='KY'>Kentucky</option>
+                <option value='LA'>Louisiana</option>
+                <option value='ME'>Maine</option>
+                <option value='MD'>Maryland</option>
+                <option value='MA'>Massachusetts</option>
+                <option value='MI'>Michigan</option>
+                <option value='MN'>Minnesota</option>
+                <option value='MS'>Mississippi</option>
+                <option value='MO'>Missouri</option>
+                <option value='MT'>Montana</option>
+                <option value='NE'>Nebraska</option>
+                <option value='NV'>Nevada</option>
+                <option value='NH'>New Hampshire</option>
+                <option value='NJ'>New Jersey</option>
+                <option value='NM'>New Mexico</option>
+                <option value='NY'>New York</option>
+                <option value='NC'>North Carolina</option>
+                <option value='ND'>North Dakota</option>
+                <option value='OH'>Ohio</option>
+                <option value='OK'>Oklahoma</option>
+                <option value='OR'>Oregon</option>
+                <option value='PA'>Pennsylvania</option>
+                <option value='RI'>Rhode Island</option>
+                <option value='SC'>South Carolina</option>
+                <option value='SD'>South Dakota</option>
+                <option value='TN'>Tennessee</option>
+                <option value='TX'>Texas</option>
+                <option value='UT'>Utah</option>
+                <option value='VT'>Vermont</option>
+                <option value='VA'>Virginia</option>
+                <option value='WA'>Washington</option>
+                <option value='WV'>West Virginia</option>
+                <option value='WI'>Wisconsin</option>
+                <option value='WY'>Wyoming</option>
+            </select><br>
+            Country<br>
+            <select id="billCountry">
+                <option value=''>Select One</option>
+                <option value="100">Afghanistan</option>
+<option value="101">Albania</option>
+<option value="080">Algeria</option>
+<option value="102">Andorra</option>
+<option value="103">Angola</option>
+<option value="199">Anguilla</option>
+<option value="192">Antigua and Barbuda (includes Redonda)</option>
+<option value="026">Argentina</option>
+<option value="200">Armenia</option>
+<option value="201">Aruba</option>
+<option value="104">Ascension</option>
+<option value="007">Australia</option>
+<option value="036">Austria</option>
+<option value="202">Azerbaijan</option>
+<option value="105">Azores</option>
+<option value="045">Bahamas</option>
+<option value="071">Bahrain</option>
+<option value="089">Bangladesh</option>
+<option value="058">Barbados</option>
+<option value="203">Belarus</option>
+<option value="013">Belgium</option>
+<option value="106">Belize</option>
+<option value="107">Benin</option>
+<option value="022">Bermuda</option>
+<option value="108">Bhutan</option>
+<option value="056">Bolivia</option>
+<option value="053">Bosnia-Herzegovina</option>
+<option value="109">Botswana</option>
+<option value="008">Brazil</option>
+<option value="204">British Virgin Islands</option>
+<option value="110">Brunei Darussalam</option>
+<option value="111">Bulgaria</option>
+<option value="184">Burkina Faso</option>
+<option value="112">Burma</option>
+<option value="113">Burundi</option>
+<option value="138">Cambodia (Kampuchea)</option>
+<option value="114">Cameroon</option>
+<option value="006">Canada</option>
+<option value="115">Cape Verde</option>
+<option value="116">Cayman Islands</option>
+<option value="117">Central African Republic</option>
+<option value="118">Chad</option>
+<option value="038">Chile</option>
+<option value="091">China</option>
+<option value="017">Colombia</option>
+<option value="119">Comoros</option>
+<option value="081">Congo, Democratic Republic of The</option>
+<option value="120">Congo, Republic of The (Brazzaville)</option>
+<option value="121">Corsica</option>
+<option value="049">Costa Rica</option>
+<option value="137">Cote d'Ivoire  (Ivory Coast)</option>
+<option value="205">Croatia</option>
+<option value="073">Cuba</option>
+<option value="092">Cyprus</option>
+<option value="066">Czech Republic</option>
+<option value="032">Denmark</option>
+<option value="122">Djibouti</option>
+<option value="090">Dominica</option>
+<option value="042">Dominican Republic</option>
+<option value="034">Ecuador</option>
+<option value="062">Egypt</option>
+<option value="044">El Salvador</option>
+<option value="124">Equatorial Guinea</option>
+<option value="131">Eritrea</option>
+<option value="125">Estonia</option>
+<option value="086">Ethiopia</option>
+<option value="127">Falkland Islands</option>
+<option value="126">Faroe Islands</option>
+<option value="094">Fiji</option>
+<option value="052">Finland</option>
+<option value="004">France (includes Monaco)</option>
+<option value="128">French Guiana</option>
+<option value="096">French Polynesia (Tahiti)</option>
+<option value="129">Gabon</option>
+<option value="130">Gambia</option>
+<option value="206">Georgia, Republic of</option>
+<option value="002">Germany</option>
+<option value="069">Ghana</option>
+<option value="132">Gibraltar</option>
+<option value="001">Great Britain and Northern Ireland</option>
+<option value="025">Greece</option>
+<option value="134">Greenland</option>
+<option value="193">Grenada</option>
+<option value="135">Guadeloupe (includes Saint Martin)</option>
+<option value="040">Guatemala</option>
+<option value="093">Guinea</option>
+<option value="136">Guinea-Bissau</option>
+<option value="061">Guyana</option>
+<option value="064">Haiti</option>
+<option value="050">Honduras</option>
+<option value="018">Hong Kong (includes Kowloon)</option>
+<option value="063">Hungary</option>
+<option value="077">Iceland</option>
+<option value="020">India</option>
+<option value="051">Indonesia</option>
+<option value="024">Iran</option>
+<option value="079">Iraq</option>
+<option value="033">Ireland (Eire)</option>
+<option value="023">Israel</option>
+<option value="009">Italy</option>
+<option value="137">Ivory Coast</option>
+<option value="029">Jamaica</option>
+<option value="003">Japan</option>
+<option value="075">Jordan</option>
+<option value="138">Kampuchea (Cambodia)</option>
+<option value="207">Kazakhstan</option>
+<option value="065">Kenya</option>
+<option value="133">Kiribati</option>
+<option value="194">Korea, Democratic People's Republic of (N. Korea)</option>
+<option value="031">Korea, Republic of (S. Korea)</option>
+<option value="060">Kuwait</option>
+<option value="206">Kyrgyzstan</option>
+<option value="139">Laos</option>
+<option value="140">Latvia</option>
+<option value="141">Lebanon</option>
+<option value="142">Lesotho</option>
+<option value="070">Liberia</option>
+<option value="076">Libya</option>
+<option value="189">Liechtenstein</option>
+<option value="143">Lithuania</option>
+<option value="088">Luxembourg</option>
+<option value="144">Macao</option>
+<option value="209">Macedonia, Republic of</option>
+<option value="145">Madagascar</option>
+<option value="146">Madeira Islands</option>
+<option value="147">Malawi</option>
+<option value="055">Malaysia</option>
+<option value="148">Maldives</option>
+<option value="149">Mali</option>
+<option value="097">Malta</option>
+<option value="229">Marshall Islands, Republic of</option>
+<option value="099">Martinique</option>
+<option value="151">Mauritania</option>
+<option value="150">Mauritius</option>
+<option value="005">Mexico</option>
+<option value="243">Micronesia, Federated States of</option>
+<option value="210">Moldova</option>
+<option value="152">Mongolia</option>
+<option value="212">Montenegro (Serbia-Montenegro)</option>
+<option value="191">Montserrat</option>
+<option value="083">Morocco</option>
+<option value="153">Mozambique</option>
+<option value="082">Namibia</option>
+<option value="154">Nauru</option>
+<option value="155">Nepal</option>
+<option value="011">Netherlands</option>
+<option value="156">Netherlands Antilles</option>
+<option value="157">New Caledonia</option>
+<option value="030">New Zealand</option>
+<option value="057">Nicaragua</option>
+<option value="159">Niger</option>
+<option value="048">Nigeria</option>
+<option value="027">Norway</option>
+<option value="160">Oman</option>
+<option value="059">Pakistan</option>
+<option value="041">Panama</option>
+<option value="161">Papua New Guinea</option>
+<option value="076">Paraguay</option>
+<option value="039">Peru</option>
+<option value="012">Philippines</option>
+<option value="190">Pitcaim Islands</option>
+<option value="028">Poland</option>
+<option value="054">Portugal</option>
+<option value="162">Qatar</option>
+<option value="163">Reunion</option>
+<option value="072">Romania</option>
+<option value="037">Russia (Russian Federation)</option>
+<option value="164">Rwanda</option>
+<option value="198">St. Christopher (St. Kitts) and Nevis</option>
+<option value="165">St. Helena</option>
+<option value="197">St. Lucia</option>
+<option value="167">St. Pierre and Miquelon</option>
+<option value="196">St. Vincent and the Grenadines</option>
+<option value="219">San Marino</option>
+<option value="172">Santa Cruz Islands</option>
+<option value="166">Sao Tome and Principe</option>
+<option value="046">Saudi Arabia</option>
+<option value="169">Senegal</option>
+<option value="212">Serbia-Montenegro (Yugoslavia)</option>
+<option value="170">Seychelles</option>
+<option value="171">Sierra Leone</option>
+<option value="035">Singapore</option>
+<option value="213">Slovak Republic (Slovakia)</option>
+<option value="214">Slovenia</option>
+<option value="172">Solomon Islands (includes Santa Cruz Islands)</option>
+<option value="173">Somalia</option>
+<option value="019">South Africa</option>
+<option value="016">Spain</option>
+<option value="087">Sri Lanka</option>
+<option value="174">Sudan</option>
+<option value="074">Suriname</option>
+<option value="175">Swaziland</option>
+<option value="015">Sweden</option>
+<option value="010">Switzerland</option>
+<option value="085">Syrian Arab Republic</option>
+<option value="096">Tahiti</option>
+<option value="021">Taiwan</option>
+<option value="215">Tajikistan</option>
+<option value="098">Tanzania</option>
+<option value="047">Thailand</option>
+<option value="176">Togo</option>
+<option value="177">Tonga</option>
+<option value="043">Trinidad and Tobago</option>
+<option value="178">Tristan da Cunha</option>
+<option value="179">Tunisia</option>
+<option value="180">Turkey</option>
+<option value="216">Turkmenistan</option>
+<option value="181">Turks and Caicos Islands</option>
+<option value="182">Tuvalu</option>
+<option value="183">Uganda</option>
+<option value="217">Ukraine</option>
+<option value="067">United Arab Emirates</option>
+<option value="001">United Kingdom (includes England, Scotland, Wales, and N. Ireland)</option>
+<option value="000">United States</option>
+<option value="068">Uruguay</option>
+<option value="218">Uzbekistan</option>
+<option value="158">Vanuatu</option>
+<option value="185">Vatican City</option>
+<option value="014">Venezuela</option>
+<option value="186">Vietnam</option>
+<option value="204">Virgin Islands</option>
+<option value="195">Wallis and Futuna Islands</option>
+<option value="187">Western Samoa</option>
+<option value="188">Yemen</option>
+<option value="084">Zambia</option>
+<option value="095">Zimbabwe</option>
+            </select><br>
+            Zip Code<input type="text" id="billZip">
+        </div>
+        <input type="submit" id="confirm" value="Place Order">
+    </form>
+        <div id="confirmation"></div>
+    </body>
+</html>
