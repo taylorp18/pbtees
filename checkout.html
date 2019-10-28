@@ -15,8 +15,8 @@
                         initCookies();
 
                         for (var i = 0; i < Merch.length; i++) {
-                                if(getCookie(Merch[i].c_name) > 0){
-                                        $('#cart').append('<div class="cart"><img class="cart" src="' + Merch[i].image +
+                                if(getCookie(Merch[i].c_name) != "0"){
+                                        $('#cart').html('<div class="cart"><img class="cart" src="' + Merch[i].image +
                                         '"> <span class="cart"><strong>' + Merch[i].name + '</strong></span><span class="cart">$' +
                                         Merch[i].price + '</span><form><input type="number" id="' + Merch[i].c_name + '" onchange="changeCookie(\'' + Merch[i].c_name + '\')" value= "' + getCookie(Merch[i].c_name) + '"></form></div>')
                                 }
@@ -211,6 +211,7 @@
                     document.getElementById("zip").value +
                     "<h3>thanks dude</h3>" +
                     "<a class=button href='index.html' id='button'>go back</a>");
+                resetCookies();
                 $("#button").focus();
             }
         </script>
@@ -250,6 +251,10 @@
                     <i class="fa fa-bars"></i></a></li>
                 </ul>
         </nav>
+
+        <section id="cart">
+        
+        </section>
 
         <div class="cart" id="total"></div>
         <form id="payMe" onsubmit="validate(); return false;">
