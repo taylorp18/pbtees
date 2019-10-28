@@ -1,0 +1,48 @@
+img.cart {
+	width: 28%; 
+	object-fit: contain;
+}
+
+div.cart {
+	border: solid #000 1px;
+	width: 90%;
+	max-width: 700px;
+	margin: 5px auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+span.cart {
+	font-family: "Andale Mono", Arial;
+	padding: 20px 2%;
+	clear: both;
+	float: right;
+}
+
+input {
+	margin: 20px 5px;
+	font-family: "Andale Mono", Arial;
+	font-size: 18px;
+	border: none;
+	width: 40px;
+}
+
+#total {
+	font-family: "Andale Mono", Arial;
+	font-size: 30px;
+	border: none;
+	justify-content: right;
+}
+
+a.checkout{
+	text-align: center;
+	line-height: 40px;
+	background-color: #BBB;
+	font-size: 25px;
+	height: 40px;
+	display: block;
+	margin: 10px auto;
+	max-width: 400px;
+	width: 90%;
+	font-family: "Andale Mono", Arial;
+}
