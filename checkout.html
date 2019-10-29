@@ -16,7 +16,7 @@
 
                         for (var i = 0; i < Merch.length; i++) {
                                 if(getCookie(Merch[i].c_name) > 0){
-                                        $('#cart').html('<div class="cart"><img class="cart" src="' + Merch[i].image +
+                                        $('#cart').append('<div class="cart"><img class="cart" src="' + Merch[i].image +
                                         '"> <span class="cart"><strong>' + Merch[i].name + '</strong></span><span class="cart">$' +
                                         Merch[i].price + '</span><form><input type="number" id="' + Merch[i].c_name + '" onchange="changeCookie(\'' + Merch[i].c_name + '\')" value= "' + getCookie(Merch[i].c_name) + '"></form></div>')
                                 }
