@@ -46,11 +46,11 @@
 		</p>
 		<form id="size">
 			<label for="size-s">S</label>
-			<input type="radio" name="size" value="small" class="size-radio" id="sm">
+			<input type="radio" name="size" value="small" class="size-radio">
 			<label for="size-m">M</label>
-			<input type="radio" name="size" value="medium" class="size-radio" id="md">
+			<input type="radio" name="size" value="medium" class="size-radio">
 			<label for="size-l">L</label>
-			<input type="radio" name="size" value="large" class="size-radio" id="lg">
+			<input type="radio" name="size" value="large" class="size-radio">
 			<br><label>Quantity:
 				<input type="number" min="1" max="25" id="quant_box"><br>
 			</label>
@@ -79,12 +79,8 @@
 			});
 		});
 	</script>
-	
 	<script>
-	function CartAdded() {
-			$("#buttontxt").text("Added");
-			$("input[id=buttontxt]").attr('disabled',true);
-		}
+
 	</script>
 </body>
 
