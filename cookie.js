@@ -46,6 +46,16 @@ function addSupermean(){
   setCookie('supermean', ++x, 10);
 }
 
+function addToCart(id, cname){
+  x = "#" + id;
+  y = parseInt($(x).val());
+
+  if (y > 0){
+    y += parseInt(getCookie(cname))
+    setCookie(cname, y, 10)
+  }
+}
+
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
