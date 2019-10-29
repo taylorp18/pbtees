@@ -139,6 +139,19 @@ input {
         justify-content: right;
 }
 
+a.checkout{
+	text-align: center;
+	line-height: 40px;
+	background-color: #BBB;
+	font-size: 25px;
+	height: 40px;
+	display: block;
+	margin: 10px auto;
+	max-width: 400px;
+	width: 90%;
+	font-family: "Andale Mono", Arial;
+}
+
 @media only screen and (max-width: 800px) {
   div.cart {
     width: 88%
